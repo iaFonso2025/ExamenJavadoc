@@ -10,7 +10,7 @@ package Examen;
  * Obtener la longitud del tramo
  * 
  * @author alfonso
- * @version 1.0
+ * @version 1.2
  * 
  */
 
@@ -91,6 +91,8 @@ public class CarrilBiciManager {
      * 
      * @param nombre Recibe una cadena de caracteres la cual utiliza para identificar el tramo
      * @return Devuelve un String 'estadoTramos'
+     * @exception NoSuchElementException Excepción que se genera al introducir un tramo inexistente
+     * la cual capturamos 
      */
     public String consultarEstado(String nombre) {
         if (!estadoTramos.containsKey(nombre)) {
@@ -99,13 +101,27 @@ public class CarrilBiciManager {
         return estadoTramos.get(nombre);
     }
 
+    /**
+     * Este método simplemente devuelve la logitud de los tramos
+     * 
+     * @return Devuelve un Double con la logitud total de los tramos
+     */
     public double longitudTotal() {
         return tramos.values().stream().mapToDouble(Double::doubleValue).sum();
     }
-
+    /**
+     * Este metodo nos devuelve los tramos
+     * 
+     * @return Devuleve un Double con los tramos
+     */
     public Map<String, Double> obtenerTramos() {
         return Collections.unmodifiableMap(tramos);
     }
+    /**
+     * Este metodo nos crea un informe por consola con el nombre de los tramos, el numero de tramos,
+     * y el estado de estos
+     * @return Devuelve un String que contiene el informe
+     */
 
     public String generarInforme() {
         StringBuilder sb = new StringBuilder("INFORME DE CARRILES BICI - Bahía de Cádiz\n");
